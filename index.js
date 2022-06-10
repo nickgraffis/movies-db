@@ -5,7 +5,8 @@ const addMovie = require('./addMovie')
 const listAllMovies = require('./listAllMovies')
 const getMovieReviews = require('./getMovieReviews')
 const updateReview = require('./updateReview')
-console.log('Welcome to the console!');
+const chalk = require('chalk')
+console.log(chalk.cyan('🎉 Welcome to the console!'));
 
 async function start() {
   const { action } = await inquirer.prompt([
@@ -18,7 +19,8 @@ async function start() {
         '🎙 Get movie reviews',
         '🎙 Add a review',
         '🎙 Update a review'
-      ]
+      ],
+      message: "What would you like to do?"
     }
   ])
   console.log(action)

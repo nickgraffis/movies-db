@@ -1,3 +1,5 @@
+const inquirer = require('inquirer')
+const connection = require('./connection')
 // function that adds a movie
 async function addMovie() {
   const { title } = await inquirer.prompt([
