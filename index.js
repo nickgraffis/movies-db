@@ -6,7 +6,8 @@ const listAllMovies = require('./listAllMovies')
 const getMovieReviews = require('./getMovieReviews')
 const updateReview = require('./updateReview')
 const chalk = require('chalk')
-console.log(chalk.cyan('🎉 Welcome to the console!'));
+const deleteMovie = require('./deleteMovie')
+console.log(chalk.cyan('🎉 Welcome to the Movies DB!'));
 
 async function start() {
   const { action } = await inquirer.prompt([
@@ -16,26 +17,29 @@ async function start() {
       choices: [
         '🎥 List all movies',
         '🎥 Add a movie',
+        '🎥 Update a movie',
         '🎙 Get movie reviews',
         '🎙 Add a review',
-        '🎙 Update a review'
+        '🎙 Update a review',
+        '😵 Delete a movie',
+        '😵 Delete a review',
+        '🏃‍♂️ Exit'
       ],
       message: "What would you like to do?"
     }
   ])
-  console.log(action)
   switch(action) {
     case '🎥 List all movies':
       const movies = await listAllMovies()
-      console.table(movies[0])
+      console.table(movies)
       return start()
     case '🎥 Add a movie':
       const newMovie = await addMovie()
-      console.log(newMovie)
+      console.log(chalk.green(newMovie))
       return start()
     case '🎙 Add a review':
       const review = await addReview()
-      console.log(review)
+      console.log(chalk.green(review))
       return start()
     case '🎙 Get movie reviews':
       const reviews = await getMovieReviews()
@@ -43,9 +47,12 @@ async function start() {
       return start()
     case '🎙 Update a review':
       const updatedReview = await updateReview()
-      console.log(updatedReview)
+      console.log(chalk.green(updatedReview))
       return start()
-      break;
+    case '😵 Delete a movie':
+      const deletedMovie = await deleteMovie()
+      console.log(chalk.green(deletedMovie))
+      return start()
   }
 }
 

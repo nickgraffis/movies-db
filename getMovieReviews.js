@@ -4,7 +4,7 @@ const inquirer = require('inquirer')
 
 async function getMovieReviews(movieId) {
   if (!movieId) {
-    const [ listOfMovies ] = await listAllMovies()
+    const listOfMovies = await listAllMovies()
     let { movie: movie_id } = await inquirer.prompt([
       {
         type: 'list',

@@ -5,7 +5,7 @@ const getMovieReviews = require('./getMovieReviews')
 
 // function that add a review -- this requires a movie_id
 async function updateReview() {
-  const [ listOfMovies ] = await listAllMovies()
+  const listOfMovies = await listAllMovies()
   const { movie: movieId } = await inquirer.prompt([
     {
       type: 'list',
